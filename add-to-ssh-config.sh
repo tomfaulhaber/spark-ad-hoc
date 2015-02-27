@@ -21,7 +21,7 @@ Host spark-master
   StrictHostKeyChecking no
   UserKnownHostsFile /dev/null
 
-Host  ${MASTER_IP}
+Host ${MASTER_IP}
   Hostname ${MASTER_IP}
   IdentityFile ${IDENTITY}
   User root

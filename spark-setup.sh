@@ -12,8 +12,6 @@ SPARK_DIR=spark-1.2.0-bin-hadoop2.4
 SPARK_FILE=${SPARK_DIR}.tgz
 
 # Install packages
-apt-get -y install git
-apt-get -y install openjdk-7-jdk
 apt-get -y install tmux
 apt-get -y install mosh
 
@@ -45,23 +43,10 @@ sed 's/log4j.rootCategory=INFO/log4j.rootCategory=WARN/' < log4j.properties.temp
 
 cd ..
 
-
-# Build scripts
-mkdir ~/bin
-cat > ~/bin/spark-shell <<EOF
-${SPARK_DIR}/bin/spark-shell --master ${SPARK_MASTER}
-EOF
-
-cat > ~/bin/pyspark <<EOF
-${SPARK_DIR}/bin/pyspark --master ${SPARK_MASTER}
-EOF
-
-chmod +x ~/bin/spark-shell ~/bin/pyspark
-
 # Update environment
 cat >> ~/.profile <<EOF
-PATH=${PATH}:${HOME}/bin
-SPARK_MASTER=${SPARK_MASTER}
+export PATH=${SPARK_DIR}/bin:${PATH}
+export SPARK_MASTER=${SPARK_MASTER}
 EOF
 
 # Run an IPython notebook server
